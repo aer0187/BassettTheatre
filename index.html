@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bassett Theatre — Independent Theatre Company, London</title>
+  <meta name="description" content="Bassett Theatre is an independent theatre company based in London, making original work that is ambitious, intimate, and unafraid.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:          #0c0b09;
+      --bg-card:     #141210;
+      --bg-section:  #111009;
+      --text:        #f2ece0;
+      --text-muted:  #8a7f6e;
+      --gold:        #c9a96e;
+      --gold-dim:    #8a6f3e;
+      --border:      #2a2520;
+      --serif:       'Cormorant Garamond', Georgia, serif;
+      --sans:        'DM Sans', system-ui, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAVIGATION ───────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(12,11,9,0.95) 0%, rgba(12,11,9,0) 100%);
+      transition: background 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(12,11,9,0.97);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--text);
+      transition: all 0.3s;
+    }
+
+    /* ─── HERO ─────────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 60%, rgba(201,169,110,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 30% 40%, rgba(201,169,110,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.2s forwards;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(4rem, 12vw, 9rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.4s forwards;
+    }
+
+    .hero-tagline {
+      font-family: var(--serif);
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.6s forwards;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.8s forwards;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover {
+      background: #dfc08a;
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold-dim);
+      color: var(--gold);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.4s forwards;
+    }
+
+    .hero-scroll span {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold-dim), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    /* ─── SECTION SHELL ────────────────────────────────────────────── */
+    section {
+      padding: 6rem 2rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold-dim);
+      margin-bottom: 2rem;
+    }
+
+    /* ─── ABOUT ────────────────────────────────────────────────────── */
+    #about {
+      background: var(--bg-section);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-left .section-title {
+      margin-bottom: 0;
+    }
+
+    .about-body p {
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .about-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-body p strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .about-detail {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .about-detail-row {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .about-detail-row .label {
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.65rem;
+      color: var(--gold-dim);
+      min-width: 80px;
+      padding-top: 0.1em;
+    }
+
+    /* ─── PRODUCTIONS ──────────────────────────────────────────────── */
+    #productions {
+      background: var(--bg);
+    }
+
+    .productions-header {
+      margin-bottom: 3.5rem;
+    }
+
+    .productions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .production-card {
+      background: var(--bg-card);
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .production-card:hover {
+      border-color: var(--gold-dim);
+    }
+
+    .production-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold-dim), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .production-card:hover::before {
+      opacity: 1;
+    }
+
+    .production-number {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .production-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .production-credit {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 1.25rem;
+    }
+
+    .production-logline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .production-divider {
+      width: 30px;
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    .production-body {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      flex: 1;
+      margin-bottom: 2rem;
+    }
+
+    .production-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 2rem;
+    }
+
+    .production-meta-row {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.72rem;
+    }
+
+    .production-meta-row .meta-label {
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold-dim);
+      min-width: 60px;
+      font-size: 0.62rem;
+    }
+
+    .production-meta-row .meta-value {
+      color: var(--text-muted);
+    }
+
+    .production-tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border: 1px solid var(--border);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    .production-tag.active {
+      border-color: var(--gold-dim);
+      color: var(--gold);
+    }
+
+    /* ─── PRESS ────────────────────────────────────────────────────── */
+    #press {
+      background: var(--bg-section);
+      border-top: 1px solid var(--border);
+    }
+
+    .press-header {
+      margin-bottom: 3.5rem;
+    }
+
+    .press-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .press-card {
+      background: var(--bg-card);
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .press-card:hover {
+      border-color: var(--gold-dim);
+    }
+
+    .press-stars {
+      color: var(--gold);
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
+    }
+
+    .press-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.35rem;
+      line-height: 1.4;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .press-meta {
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .press-meta .press-pub {
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold-dim);
+      font-size: 0.65rem;
+    }
+
+    .press-link {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .press-link:hover {
+      color: #dfc08a;
+    }
+
+    /* ─── CONTACT ──────────────────────────────────────────────────── */
+    #contact {
+      background: var(--bg-section);
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-left .section-title {
+      margin-bottom: 1rem;
+    }
+
+    .contact-left p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .contact-detail a,
+    .contact-detail span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      transition: color 0.2s;
+    }
+
+    .contact-detail a:hover {
+      color: var(--gold);
+    }
+
+    .contact-detail .det-label {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold-dim);
+      min-width: 60px;
+    }
+
+    /* Mailing list form */
+    .mailing-form-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+    }
+
+    .form-title {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 300;
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+
+    .form-group input:focus {
+      border-color: var(--gold-dim);
+    }
+
+    .form-group input::placeholder {
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+
+    .form-submit {
+      width: 100%;
+      margin-top: 0.5rem;
+      font-family: var(--sans);
+    }
+
+    .form-success {
+      display: none;
+      padding: 1rem;
+      border: 1px solid var(--gold-dim);
+      color: var(--gold);
+      font-size: 0.85rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    /* ─── FOOTER ───────────────────────────────────────────────────── */
+    footer {
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 0.9rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    /* ─── ANIMATIONS ───────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.2); }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ─── MOBILE ───────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.25rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: var(--bg);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        z-index: 99;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        font-size: 1rem;
+        letter-spacing: 0.2em;
+      }
+
+      .nav-toggle {
+        display: flex;
+        z-index: 101;
+      }
+
+      section {
+        padding: 4rem 1.25rem;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .productions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .production-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .press-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .press-card {
+        padding: 2rem 1.5rem;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+        padding: 2rem 1.25rem;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION: NAV
+       Squarespace: paste into a Header code block or
+       Code Block at top of page
+  ════════════════════════════════════════════════════ -->
+  <nav id="main-nav">
+    <a href="#hero" class="nav-logo">Bassett Theatre</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#productions">Productions</a></li>
+      <li><a href="#press">Press</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION: HERO
+       Squarespace: paste into first full-width Code Block
+  ════════════════════════════════════════════════════ -->
+  <section id="hero">
+    <p class="hero-eyebrow">London &nbsp;·&nbsp; Independent Theatre</p>
+    <h1 class="hero-title">Bassett<br>Theatre</h1>
+    <p class="hero-tagline">Original work. Raw instinct. Considered craft.</p>
+    <div class="hero-cta">
+      <a href="#productions" class="btn btn-primary">Productions</a>
+      <a href="#contact" class="btn btn-outline">Join the list</a>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION: ABOUT
+       Squarespace: paste into a Code Block
+  ════════════════════════════════════════════════════ -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-left">
+          <p class="section-label reveal">The Company</p>
+          <h2 class="section-title reveal reveal-delay-1">Independent.<br><em>Unafraid.</em></h2>
+          <div class="divider reveal reveal-delay-2"></div>
+        </div>
+        <div class="about-body">
+          <p class="reveal"><strong>Bassett Theatre</strong> is an independent theatre company founded by <strong>Andreas Robichaux</strong>, who serves as its Artistic Director, making original work from London. We create drama, solo performance, and new writing that is ambitious, intimate, and genuinely alive — theatre that pursues the difficult questions about identity, belonging, and what it costs to be human.</p>
+          <p class="reveal reveal-delay-1">We believe the stage is a place for honesty. Our work sits at the intersection of autobiography and invention, comedy and grief, the deeply personal and the universally felt. We are not interested in safe theatre.</p>
+          <p class="reveal reveal-delay-2">Based at <strong>1 Bassett Road, London W10</strong>, we produce and tour original productions in fringe venues, studio theatres, and non-traditional spaces across the UK.</p>
+          <div class="about-detail reveal reveal-delay-3">
+            <div class="about-detail-row">
+              <span class="label">Base</span>
+              <span>1 Bassett Road, London W10 6LA</span>
+            </div>
+            <div class="about-detail-row">
+              <span class="label">Type</span>
+              <span>Independent theatre company, UK</span>
+            </div>
+            <div class="about-detail-row">
+              <span class="label">Focus</span>
+              <span>New writing, solo performance, touring</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION: PRODUCTIONS
+       Squarespace: paste into a Code Block
+  ════════════════════════════════════════════════════ -->
+  <section id="productions">
+    <div class="container">
+      <div class="productions-header">
+        <p class="section-label reveal">On Stage &amp; In Development</p>
+        <h2 class="section-title reveal reveal-delay-1">Productions</h2>
+        <div class="divider reveal reveal-delay-2"></div>
+      </div>
+
+      <div class="productions-grid">
+
+        <!-- PRODUCTION 1: AN ACT(OR?) -->
+        <div class="production-card reveal">
+          <p class="production-number">Production No. 01</p>
+          <h3 class="production-title">An Act(Or?)</h3>
+          <p class="production-credit">Written &amp; performed by Andreas Robichaux</p>
+          <p class="production-logline">One actor. Nine robot identities. Zero certainty.</p>
+          <div class="production-divider"></div>
+          <p class="production-body">
+            London, 2022. Omicron. A young actor named Dre is waiting — for the call, for the breakthrough, for a reason. In between Shakespeare monologues, Taylor Swift conspiracy theories, and genuinely questionable life choices, he asks the question that keeps actors up at night: <em>what kind of human am I, really?</em>
+            <br><br>
+            Told through nine possible robot selves — Supervillain, Trickster, Pinocchio, Lover, Unknown — this one-man show is part stand-up comedy, part Shakespearean confession, part Joe Dispenza meditation gone sideways. Honest, funny, and unexpectedly moving.
+          </p>
+          <div class="production-meta">
+            <div class="production-meta-row">
+              <span class="meta-label">Format</span>
+              <span class="meta-value">One-man show</span>
+            </div>
+            <div class="production-meta-row">
+              <span class="meta-label">Written &amp; Performed by</span>
+              <span class="meta-value">Andreas Robichaux</span>
+            </div>
+            <div class="production-meta-row">
+              <span class="meta-label">Themes</span>
+              <span class="meta-value">Identity, acting, belonging, the method</span>
+            </div>
+          </div>
+          <span class="production-tag active">Available to tour</span>
+        </div>
+
+        <!-- PRODUCTION 2: THE NOSE -->
+        <div class="production-card reveal reveal-delay-1">
+          <p class="production-number">Production No. 02</p>
+          <h3 class="production-title">The Nose</h3>
+          <p class="production-credit">Directed by Andreas Robichaux</p>
+          <p class="production-logline">A man wakes up without the most essential part of himself.</p>
+          <div class="production-divider"></div>
+          <p class="production-body">
+            After Gogol. A civil servant wakes one morning to find his nose has left him — is living independently in the city, outranking him socially, moving through the world with more confidence and authority than he ever had. Desperate to reclaim it, he begins a journey through a London that feels both recognisable and entirely wrong.
+            <br><br>
+            Bassett Theatre's adaptation of Gogol's absurdist masterpiece strips the satire to its nerve: what do we lose when the thing that defines us walks out the door? A dark comedy about status, self-image, and the parts of ourselves we never knew were in charge.
+          </p>
+          <div class="production-meta">
+            <div class="production-meta-row">
+              <span class="meta-label">Format</span>
+              <span class="meta-value">New adaptation</span>
+            </div>
+            <div class="production-meta-row">
+              <span class="meta-label">Source</span>
+              <span class="meta-value">After Nikolai Gogol (1836)</span>
+            </div>
+            <div class="production-meta-row">
+              <span class="meta-label">Themes</span>
+              <span class="meta-value">Identity, absurdism, status, London</span>
+            </div>
+          </div>
+          <span class="production-tag">In development</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION: PRESS
+       Squarespace: paste into a Code Block
+  ════════════════════════════════════════════════════ -->
+  <section id="press">
+    <div class="container">
+      <div class="press-header">
+        <p class="section-label reveal">In The Press</p>
+        <h2 class="section-title reveal reveal-delay-1">Press</h2>
+        <div class="divider reveal reveal-delay-2"></div>
+      </div>
+
+      <div class="press-grid">
+
+        <!-- REVIEW 1: PLAYS TO SEE -->
+        <div class="press-card reveal">
+          <p class="press-stars">★★★★</p>
+          <p class="press-quote">&ldquo;Strange, funny and occasionally chaotic&rdquo;</p>
+          <p class="press-meta"><span class="press-pub">Plays To See</span><br>A Night of Gogol (The Nose) &nbsp;·&nbsp; 13 May 2026</p>
+          <a href="https://playstosee.com/reviews/uk-reviews/a-night-of-gogol/" target="_blank" rel="noopener" class="press-link">Read the review →</a>
+        </div>
+
+        <!-- REVIEW 2: LONDON THEATRE REVIEWS -->
+        <div class="press-card reveal reveal-delay-1">
+          <p class="press-stars">★★★★</p>
+          <p class="press-quote">&ldquo;a unique and ultimately enjoyable experience&rdquo;</p>
+          <p class="press-meta"><span class="press-pub">London Theatre Reviews</span><br>A Night of Gogol (The Nose) &nbsp;·&nbsp; 10 May 2026</p>
+          <a href="https://www.londontheatrereviews.co.uk/post.cfm?p=27795" target="_blank" rel="noopener" class="press-link">Read the review →</a>
+        </div>
+
+        <!-- REVIEW 3: LONDON PUB THEATRES MAGAZINE -->
+        <div class="press-card reveal reveal-delay-2">
+          <p class="press-quote">&ldquo;truly inventive&rdquo;</p>
+          <p class="press-meta"><span class="press-pub">London Pub Theatres Magazine</span><br>A Night of Gogol (The Nose) &nbsp;·&nbsp; 12 May 2026</p>
+          <a href="https://www.londonpubtheatres.com/review-a-night-of-gogol-at-a-block-of-flats-in-london-fields" target="_blank" rel="noopener" class="press-link">Read the review →</a>
+        </div>
+
+        <!-- REVIEW 4: WEST END WILMA -->
+        <div class="press-card reveal reveal-delay-3">
+          <p class="press-quote">&ldquo;Honest, funny, and unexpectedly moving&rdquo;</p>
+          <p class="press-meta"><span class="press-pub">West End Wilma</span><br>An Act(Or?) &nbsp;·&nbsp; 15 April 2026</p>
+          <a href="https://westendwilma.com/an-actor-bassett-theatre-review-2026/" target="_blank" rel="noopener" class="press-link">Read the review →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION: CONTACT
+       Squarespace: paste into a Code Block
+  ════════════════════════════════════════════════════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-left">
+          <p class="section-label reveal">Get in Touch</p>
+          <h2 class="section-title reveal reveal-delay-1">Find Us</h2>
+          <div class="divider reveal reveal-delay-2"></div>
+          <p class="reveal reveal-delay-2">For production enquiries, press, or bookings, reach out directly. We work with fringe venues, festival producers, and arts organisations across the UK.</p>
+          <div class="contact-detail reveal reveal-delay-3">
+            <a href="mailto:hello@bassetttheatre.co.uk">
+              <span class="det-label">Email</span>
+              hello@bassetttheatre.co.uk
+            </a>
+            <a href="https://www.google.com/maps/search/Bassett+Theatre,+1+Bassett+Road,+London,+W10+6LA" target="_blank" rel="noopener">
+              <span class="det-label">Find Us</span>
+              1 Bassett Road, London W10 6LA
+            </a>
+            <a href="https://www.google.com/maps/search/Bassett+Theatre,+1+Bassett+Road,+London,+W10+6LA" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top: 0.5rem; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; font-size: 0.7rem;">
+              View on Google Maps ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="mailing-form-wrap reveal reveal-delay-1">
+          <h3 class="form-title">Stay in the loop.</h3>
+          <p class="form-subtitle">Join our mailing list for production announcements, ticket releases, and studio updates.</p>
+          <form id="mailing-form" novalidate>
+            <div class="form-group">
+              <label for="form-name">Name</label>
+              <input type="text" id="form-name" name="name" placeholder="Your name" autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="form-email">Email address</label>
+              <input type="email" id="form-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">Subscribe</button>
+            <div class="form-success" id="form-success">
+              You're on the list. Thank you.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION: FOOTER
+       Squarespace: paste into Footer code block
+  ════════════════════════════════════════════════════ -->
+  <footer>
+    <span class="footer-logo">Bassett Theatre</span>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#productions">Productions</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <span class="footer-copy">&copy; 2026 Bassett Theatre. London, UK.</span>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       INLINE JAVASCRIPT
+       (included in same file — no external dependencies)
+  ════════════════════════════════════════════════════ -->
+  <script>
+    // Nav: scroll behaviour
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Nav: mobile toggle
+    const toggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Mailing list form (placeholder — wire up to your email service)
+    const form = document.getElementById('mailing-form');
+    const success = document.getElementById('form-success');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('form-email').value;
+      if (!email || !email.includes('@')) return;
+
+      // Replace this block with your actual form submission / Mailchimp / etc.
+      form.querySelectorAll('input, button').forEach(el => el.disabled = true);
+      success.style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
