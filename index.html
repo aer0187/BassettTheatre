@@ -432,6 +432,18 @@
       margin-bottom: 2rem;
     }
 
+    .production-body a {
+      color: var(--gold);
+      text-decoration: underline;
+      text-decoration-color: var(--gold-dim);
+      text-underline-offset: 2px;
+      transition: color 0.2s;
+    }
+
+    .production-body a:hover {
+      color: #dfc08a;
+    }
+
     .production-meta {
       display: flex;
       flex-direction: column;
@@ -464,13 +476,20 @@
       font-size: 0.62rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
+      text-decoration: none;
       color: var(--text-muted);
       margin-top: auto;
+      transition: border-color 0.2s, color 0.2s;
     }
 
     .production-tag.active {
       border-color: var(--gold-dim);
       color: var(--gold);
+    }
+
+    a.production-tag.active:hover {
+      border-color: var(--gold);
+      color: #dfc08a;
     }
 
     /* ─── PRESS ────────────────────────────────────────────────────── */
@@ -956,22 +975,28 @@
             After Gogol. A civil servant wakes one morning to find his nose has left him — is living independently in the city, outranking him socially, moving through the world with more confidence and authority than he ever had. Desperate to reclaim it, he begins a journey through a London that feels both recognisable and entirely wrong.
             <br><br>
             Bassett Theatre's adaptation of Gogol's absurdist masterpiece strips the satire to its nerve: what do we lose when the thing that defines us walks out the door? A dark comedy about status, self-image, and the parts of ourselves we never knew were in charge.
+            <br><br>
+            Staged in May 2026 as <em>A Night of Gogol</em> — an immersive promenade through a real block of flats in London Fields, complete with live Ukrainian folk music, shadow puppetry, and a three-course dinner cooked to the story's own menu — the run sold out and earned four stars from both <a href="https://playstosee.com/reviews/uk-reviews/a-night-of-gogol/" target="_blank" rel="noopener">Plays To See</a> and <a href="https://www.londontheatrereviews.co.uk/post.cfm?p=27795" target="_blank" rel="noopener">London Theatre Reviews</a>, with <a href="https://www.londonpubtheatres.com/review-a-night-of-gogol-at-a-block-of-flats-in-london-fields" target="_blank" rel="noopener">London Pub Theatres Magazine</a> calling it &ldquo;truly inventive.&rdquo;
           </p>
           <div class="production-meta">
             <div class="production-meta-row">
               <span class="meta-label">Format</span>
-              <span class="meta-value">New adaptation</span>
+              <span class="meta-value">Immersive promenade adaptation</span>
             </div>
             <div class="production-meta-row">
               <span class="meta-label">Source</span>
               <span class="meta-value">After Nikolai Gogol (1836)</span>
             </div>
             <div class="production-meta-row">
+              <span class="meta-label">Run</span>
+              <span class="meta-value">8&ndash;9 May 2026 &middot; London Fields</span>
+            </div>
+            <div class="production-meta-row">
               <span class="meta-label">Themes</span>
               <span class="meta-value">Identity, absurdism, status, London</span>
             </div>
           </div>
-          <span class="production-tag">In development</span>
+          <a href="#press" class="production-tag active">★★★★ Reviewed</a>
         </div>
 
       </div>

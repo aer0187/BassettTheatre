@@ -76,9 +76,9 @@ Cut from `<section id="hero">` through its closing `</section>`.
 
 **To edit production copy:**
 - `An Act(Or?)` card: update the `<p class="production-body">` paragraph inside the first `.production-card`
-- `The Nose` card: update the same element in the second `.production-card`
+- `The Nose` card: update the same element in the second `.production-card` — this paragraph now also links out to its three press reviews (Plays To See, London Theatre Reviews, London Pub Theatres Magazine); keep `target="_blank" rel="noopener"` on any link added here
 - Credit lines: each card has a `<p class="production-credit">` directly under the title — update the name/role there
-- Tags: change `"Available to tour"` / `"In development"` as needed
+- Tags: `An Act(Or?)` uses a plain `"Available to tour"` tag; `The Nose` tag is now an `<a href="#press" class="production-tag active">★★★★ Reviewed</a>` that jumps to the Press section — update once a production's review status or run dates change
 
 ---
 
@@ -141,6 +141,7 @@ Also paste the `<script>` block here if using Code Injection, or keep it at the 
 | The Nose body text | Second `.production-card` → `<p class="production-body">` |
 | An Act(Or?) credit line | First `.production-card` → `<p class="production-credit">` |
 | The Nose credit line | Second `.production-card` → `<p class="production-credit">` |
+| The Nose status tag / press links | Second `.production-card` → `<a class="production-tag active">` (links to `#press`) and the review links inside its `<p class="production-body">` |
 | Press review cards | `.press-grid` → each `<div class="press-card">` (stars, quote, meta, link) |
 | Press section heading/label | `<h2 class="section-title">` and `<p class="section-label">` inside `#press` |
 | Footer year | `&copy; 2026 Bassett Theatre...` in `<footer>` |
